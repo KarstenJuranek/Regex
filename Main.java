@@ -7,62 +7,96 @@ import java.util.regex.Pattern;
 
 public class Main
 {
+    // Erstellung einer Klasse Namens "finder", die eine Map beinhaltet
     private static List<Map.Entry<Integer, Integer>> finder(Matcher Match)
     {
+        // Erstellung einer Array List, die pro Eintrag zwei Zahlen beinhaltet
         List<Map.Entry<Integer, Integer>> Finds = new ArrayList<>();
         
+        // while schleife, die über die Match Methode, über den ganzen String iteriert
+        // und dann die Fundstellen ausgibt.
         while (Match.find())
         {
             int X = Match.start(), Y = Match.end();
             Finds.add(Map.entry(X, Y));
         }
-        
+        // Rückgabe der Funde
         return Finds;
     }
-    private static List<String> finds(String S, List<Map.Entry<Integer, Integer>> Finds)
+
+    // Erstellen einer Klasse, die aus den vorherigen Funden einen substring erstellt und abspeichert
+    private static List<String> Finds_substring(String S, List<Map.Entry<Integer, Integer>> Finds)
     {
+        // Erstellung einer Array Liste, die anschließend die Funde wiedergibt
         List<String> Findings = new ArrayList<>();
 
+        // For-Schleife, die die Stellen aus der Start-Endpunkte nimmt und daraus einen
+        // Substring erstellt. (Key-Value sind hierbei die Map-Entry Einträge aus der oberen Klasse)
         for (Map.Entry<Integer, Integer> Find : Finds)
             Findings.add(S.substring(Find.getKey(), Find.getValue()));
-
+        // Rückgabe des Substrings.
         return Findings;
     }
     
     // Regex
     public static void main(String[] args)
     {
-        String T = "to do or not to do - that is the decision";
+        // Definieren des zu bearbeitenden Strings, verweisen der Pattern und Matcher-Klassen
+        String InputString = "to do or not to do - that is the decision";
         Pattern Patt;
         Matcher Match;
         
+        /*
+        Welche Rückgabemethoden gibt es?
+        * Boolsche-Rückgabe siehe Beispiel 1 (minimalistisch ausreichend)
+        * While-Rückgabe der Start und Endpunkte & des Strings Beispiel 2 (gängig)
+         */
+
+        /*
+        Regular Expressions:
+        * Jeder einzelne Buchstabe/Zeichen/Leerzeichen kann gefiltert werden bspw:
+            a-z /   A-Z /   &   /   a-zA-Z  /   [hH]ey
+        * Die Kombination aus Klammern [] und dem Sternchen * bedeutet, das es nur ein oder
+            mehr Vorkommen markiert werden müssen.
+         */
         // Beispiel 1
         {
+            // Ausgabe aller einzelnen Kleinbuchstaben/-/Leerzeichen des Strings
             Patt = Pattern.compile("[- a-z]*");
-            Match = Patt.matcher(T);
+            Match = Patt.matcher(InputString);
+            // Rückgabe des Fundes in einem boolschen Wert
             boolean F = Match.matches();
             System.out.println("Beispiel 1: "+F);
+            
         }
     
+        System.out.println();
+
         // Beispiel 2
         {
+            // Gibt sämtliche Folgen von d/t/i mit o wieder
             Patt = Pattern.compile("[dti]o");    // do|to|io
-            Match = Patt.matcher(T);
+            Match = Patt.matcher(InputString);
     
             System.out.print("Beispiel 2: ");
+            // While Schleife, die Start und Endpunkte der Matches wiedergibt
             while (Match.find())
             {
+                // Suche nach Start- und Endpunkte
                 int X = Match.start(), Y = Match.end();
+                // Gruppieren des Strings der Funde
                 String R = Match.group();
+                // Rückgabe des Strings + "@" & Start- und Endpunkt
                 System.out.print(R+"@"+X+"-"+Y+"\t");
             }
-            System.out.println();
         }
+
+        System.out.println("\n");
         
         // Beispiel 3
         {
             Patt = Pattern.compile("\\b\\w?o\\w?\\b");  // Regex: \b\w?o\w?\b
-            Match = Patt.matcher(T);
+            Match = Patt.matcher(InputString);
             List<Map.Entry<Integer, Integer>> Finds = finder(Match);
             System.out.println(Finds);
 
@@ -70,7 +104,7 @@ public class Main
             for (Map.Entry<Integer, Integer> Find : Finds)
             {
                 int X = Find.getKey(), Y = Find.getValue();
-                System.out.print(T.substring(X, Y)+"@"+Find+"\t");
+                System.out.print(InputString.substring(X, Y)+"@"+Find+"\t");
             }
             System.out.println();
             
@@ -82,7 +116,7 @@ public class Main
         {
             Patt = Pattern.compile("[DT]O", Pattern.CASE_INSENSITIVE);
             //Patt = Pattern.compile("(?i)[DT]O");  // alternativ per Schalter
-            Match = Patt.matcher(T);
+            Match = Patt.matcher(InputString);
             List<Map.Entry<Integer, Integer>> Finds = finder(Match);
             System.out.println("Beispiel 4: "+Finds);
         }
@@ -90,7 +124,7 @@ public class Main
         // Beispiel 5
         {
             Patt = Pattern.compile(" ");
-            Match = Patt.matcher(T);
+            Match = Patt.matcher(InputString);
 
             StringBuilder SB = new StringBuilder();
             while (Match.find())
@@ -102,10 +136,10 @@ public class Main
 
         // Beispiel 6
         {
-            boolean F = T.matches("[- a-z]*");  // 'Convenience Function'
+            boolean F = InputString.matches("[- a-z]*");  // 'Convenience Function'
             System.out.print("Beispiel 6: "+F+"\t");
         
-            String R = T.replaceAll("do", "go");    // 'Convenience Function
+            String R = InputString.replaceAll("do", "go");    // 'Convenience Function
             System.out.println("'"+R+"'");
         }
         
