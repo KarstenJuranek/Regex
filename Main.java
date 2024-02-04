@@ -50,14 +50,22 @@ public class Main
         Welche Rückgabemethoden gibt es?
         * Boolsche-Rückgabe siehe Beispiel 1 (minimalistisch ausreichend)
         * While-Rückgabe der Start und Endpunkte & des Strings Beispiel 2 (gängig)
+        * For-Rückgabe ermöglicht Ebenso die Rückgabe der End- Startpunkte und eines substrings
+        * Direkt aus einer Liste auslesen lassen Bsp3. (einfache schnelle Wiedergabe)
          */
 
         /*
         Regular Expressions:
+        * zu Beachten ist, dass Backslashes in Regex immer doppelt Erfolgen müssen, da
+            ansonsten nach dem Zeichen gesucht wird.
         * Jeder einzelne Buchstabe/Zeichen/Leerzeichen kann gefiltert werden bspw:
             a-z /   A-Z /   &   /   a-zA-Z  /   [hH]ey
         * Die Kombination aus Klammern [] und dem Sternchen * bedeutet, das es nur ein oder
             mehr Vorkommen markiert werden müssen.
+        * Wortgrenzen werden mithilfe des kleinen Buchstabens b gegründet, zu beachten ist, das es 
+            Anfangs und Endpunkte gibt -->  //b --> \\B gibt hingegen das genaue gegenteil aus
+        * Der Buchstabe \\w hingegen gibt ein Willkürliches alphanumerisches Zeichen wieder.
+        * Das Fragezeichen besagt, das das vorherige Zeichen optional sein kann.
          */
         // Beispiel 1
         {
@@ -97,21 +105,34 @@ public class Main
         {
             Patt = Pattern.compile("\\b\\w?o\\w?\\b");  // Regex: \b\w?o\w?\b
             Match = Patt.matcher(InputString);
-            List<Map.Entry<Integer, Integer>> Finds = finder(Match);
-            System.out.println(Finds);
+            // Erstellen einer Liste, mit Map.Entrys,
+            List<Map.Entry<Integer, Integer>> Bsp3Finds = finder(Match);
+
+            // alleinige Rückgabe der genauen Fundstellen in der Liste (Start/End)
+            System.out.println("Beispiel 3.1: "+Bsp3Finds);
 
             System.out.print("Beispiel 3: ");
-            for (Map.Entry<Integer, Integer> Find : Finds)
+            // Ausgabe in einer vorher definierten Liste Mit Key/Values
+            for (Map.Entry<Integer, Integer> Find : Bsp3Finds)
             {
+                // Deklarieren der Key/Value Werte
                 int X = Find.getKey(), Y = Find.getValue();
+                // Ausgabe der Werte in einen Substring ausgehen aus dem gesamten Sting
                 System.out.print(InputString.substring(X, Y)+"@"+Find+"\t");
             }
             System.out.println();
             
-            // Frage: Was passiert, wenn man die Boundaries \b oben weglässt?
-            //        Was passiert, wenn \b durch \B ersetzt wird?
+            // Fragen: 
+            // Was passiert, wenn man die Boundaries \b oben weglässt?
+            //  Durch das Weglassen der Boundaried können auch Funde innerhalb von Wörtern 
+            //  gefunden werden. Somit erfolgt die Ausgabe nicht mehr nur in ganzen Wörtern
+
+            // Was passiert, wenn \b durch \B ersetzt wird?
+            // Es werden nur Funde angezeigt, die sich genau inmitten des Wortes befinden.
         }
     
+        System.out.print("\n");
+
         // Beispiel 4
         {
             Patt = Pattern.compile("[DT]O", Pattern.CASE_INSENSITIVE);
@@ -120,6 +141,8 @@ public class Main
             List<Map.Entry<Integer, Integer>> Finds = finder(Match);
             System.out.println("Beispiel 4: "+Finds);
         }
+
+        System.out.print("\n");
 
         // Beispiel 5
         {
@@ -130,9 +153,12 @@ public class Main
             while (Match.find())
                 Match.appendReplacement(SB, "__");
             Match.appendTail(SB);
+            
 
-            System.out.println(SB);
+            System.out.println("Beispiel 5: "+SB);
         }
+
+        System.out.print("\n");
 
         // Beispiel 6
         {
@@ -142,6 +168,8 @@ public class Main
             String R = InputString.replaceAll("do", "go");    // 'Convenience Function
             System.out.println("'"+R+"'");
         }
+
+        System.out.print("\n");
         
         // Spezielle Aufgaben für obige Daten
         {
