@@ -146,16 +146,18 @@ public class Main
 
         // Beispiel 5
         {
+            // Regex Filterung für eine Ersetzung bestimmter Zeichen
             Patt = Pattern.compile(" ");
             Match = Patt.matcher(InputString);
 
+            // Erstellung eines Stringbuilders
             StringBuilder SB = new StringBuilder();
             while (Match.find())
+            // Ersetzt alle Leerzeichen mit einem neu definierten Zeichen
                 Match.appendReplacement(SB, "__");
             Match.appendTail(SB);
             
-
-            System.out.println("Beispiel 5: "+SB);
+            System.out.println("Beispiel 5: "+ SB);
         }
 
         System.out.print("\n");
@@ -206,6 +208,39 @@ public class Main
 
             //boolean F = Match.find();
             //boolean F = Match.matches();*/
+
+            
+            /*
+            Was sind String Builder?
+            Der StringBuilder erlaubt es effiziente Änderungen an der Zeichenkette durchzuführen,
+            ohne dabei ein neues Objekt zu erstellen.
+            Beispiele:
+
+            StringBuilder sb = new StringBuilder();
+            
+            Beispiel 1: 
+            sb.append("Hello");
+            sb.append" World!);
+            String result = sb.toString();  /"Hello World!" --> Konkatenation von Zeichenketten
+
+            Beispiel 2:
+            for (int i = 0; i<5; i++) {
+                sb.append(i).append(" ");
+            }
+            String result = sb.toString     /"0 1 2 3 4 "   --> Effizientes Aufbauen von Zeichenketten in Schleifen
+
+            Beispiel 3 (abcd):
+            sb.setCharAt(1, 'X');
+            String result = sb.toString();  /"aXcde"        --> Ersetzen von Zeichen in einer Zeichenkette
+
+            Beispiel 4 (012345):
+            sb.delete(0,4);
+            String result = sb.toString();  /"45"           --> Löschen von Teilen einer Zeichenkette
+
+            Beispiel 5 (1234):
+            sb.reverse();
+            String result = sb.toString();  /"4321"         --> Umkehren von Zeichenketten
+             */
         }
     }
 }
