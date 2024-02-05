@@ -213,9 +213,31 @@ public class Main {
 
         // Spezielle Aufgaben für obige Daten
         {
-            // Finden Sie alle zweibuchstabigen Wörter
-            // Finden Sie ganze Wörter, die "is" enthalten
-            // Finden Sie beliebige Palindrome, die zw. 3 und 5 Zeichen lang sind
+
+        // Schritt 1, definieren des zu bearbeitenden Strings/Textes etc.
+        String InputString = "to do or not to do"
+
+        // Schritt 2 Definieren des Patterns und des Matchers.
+    
+        // TODO Definieren Sie den Regex für folgende Aufgabe:
+        // Finden Sie alle zweibuchstabigen Wörter
+            RegexPattern = Pattern.compile("");
+
+        // TODO Definieren Sie den Regex für folgende Aufgabe:
+        // Finden Sie ganze Wörter, die "is" enthalten  
+            RegexPattern = Pattern.compile("");
+
+        // TODO Definieren Sie den Regex für folgende Aufgabe:
+        // Finden Sie beliebige Palindrome, die zw. 3 und 5 Zeichen lang sind
+            RegexPattern = Pattern.compile("");
+
+        RegexMatcher = Matcher.matcher(InputString);
+
+        // Schritt drei, Ausgabe definieren, wie die Funde wiedergegeben werden sollen
+
+
+
+
         }
 
         // Allgemeine Aufgaben mit eigenen Beispieldaten
