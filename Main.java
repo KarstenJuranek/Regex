@@ -196,48 +196,56 @@ public class Main {
 
         // Beispiel 6
         {
-        // Überprüfung, ob der String aus den besagten Regex besteht.
-        // Die Ausgabe erfolgt über true oder false
+            // Überprüfung, ob der String aus den besagten Regex besteht.
+            // Die Ausgabe erfolgt über true oder false
             boolean F = InputString.matches("[- a-z]*"); // 'Convenience Function'
             System.out.print("Beispiel 6: " + F + "\t");
 
-        // Der Input Stream wird mithilfe von replaceAll verändert, es wird der angegebene REGEX
-        // mit einer Alternativen Stringfolge ersetzt.
+            // Der Input Stream wird mithilfe von replaceAll verändert, es wird der angegebene REGEX
+            // mit einer Alternativen Stringfolge ersetzt.
             String R = InputString.replaceAll("do", "go"); // 'Convenience Function'
             System.out.println("'" + R + "'");
 
-        // TODO: Aufgabe mit replace und CharSequences
+            // TODO: Aufgabe mit replace und CharSequences
         }
 
         System.out.print("\n");
+        System.out.println("Aufgaben zum obigen String:");
 
         // Spezielle Aufgaben für obige Daten
+        // Finden Sie alle zweibuchstabigen Wörter        
         {
+            System.out.print("Aufgabe 1: \t");
+            // Schritt 1, definieren des zu bearbeitenden Strings/Textes etc.
+            String InputString1 = "to do or not to do";
 
-        // Schritt 1, definieren des zu bearbeitenden Strings/Textes etc.
-        String InputString = "to do or not to do"
+            // Schritt 2 Definieren des Patterns und des Matchers.
+            // TODO Definieren Sie den Regex für folgende Aufgabe:
+            Pattern regexPattern1 = Pattern.compile("");
+            Matcher regexMatcher1 = regexPattern1.matcher(InputString1);
 
-        // Schritt 2 Definieren des Patterns und des Matchers.
-    
-        // TODO Definieren Sie den Regex für folgende Aufgabe:
-        // Finden Sie alle zweibuchstabigen Wörter
-            RegexPattern = Pattern.compile("");
+        }
 
-        // TODO Definieren Sie den Regex für folgende Aufgabe:
-        // Finden Sie ganze Wörter, die "is" enthalten  
-            RegexPattern = Pattern.compile("");
+        // Finden Sie ganze Wörter, die "is" enthalten
+        {
+            System.out.print("Aufgabe 2: \t");
+            String InputString1 = "to do or not to do";
 
-        // TODO Definieren Sie den Regex für folgende Aufgabe:
+            // TODO Definieren Sie den Regex für folgende Aufgabe:
+
+            Pattern regexPattern2 = Pattern.compile("");
+            Matcher regexMatcher2 = regexPattern2.matcher(InputString1);
+
+        }
+
         // Finden Sie beliebige Palindrome, die zw. 3 und 5 Zeichen lang sind
-            RegexPattern = Pattern.compile("");
+        {
+            System.out.print("Aufgabe 3: \t");
+            String InputString1 = "to do or not to do";
 
-        RegexMatcher = Matcher.matcher(InputString);
-
-        // Schritt drei, Ausgabe definieren, wie die Funde wiedergegeben werden sollen
-
-
-
-
+            // TODO Definieren Sie den Regex für folgende Aufgabe:
+            Pattern regexPattern3 = Pattern.compile("");
+            Matcher regexMatcher3 = regexPattern3.matcher(InputString1);
         }
 
         // Allgemeine Aufgaben mit eigenen Beispieldaten
